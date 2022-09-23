@@ -1,5 +1,6 @@
 package com.kariskan.practice.webservice.web;
 
+import com.kariskan.practice.webservice.config.auth.LoginUser;
 import com.kariskan.practice.webservice.config.auth.dto.SessionUser;
 import com.kariskan.practice.webservice.service.poasts.PostsService;
 import com.kariskan.practice.webservice.web.dto.PostsResponseDto;
@@ -18,11 +19,9 @@ public class IndexController {
     private final HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(Model model, @LoginUser SessionUser user) {
         //postsService.findAllDesc의 결과를 model에 담아서 index.mustache에 전달한다.
         model.addAttribute("posts", postsService.findAllDesc());
-
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
 
         if(user != null) {
             model.addAttribute("userName", user.getName());
