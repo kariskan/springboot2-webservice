@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PostsUpdateRequestDto {
 
-     private String title;
-     private String content;
+    private String title;
+    private String content;
 
     @Builder
     public PostsUpdateRequestDto(String title, String content) {

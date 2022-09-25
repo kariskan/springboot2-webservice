@@ -11,8 +11,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 @EnableWebSecurity
 public class Springboot2WebserviceApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(Springboot2WebserviceApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(Springboot2WebserviceApplication.class, args);
+    }
 
 }
