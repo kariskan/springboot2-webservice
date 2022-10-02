@@ -53,6 +53,7 @@ public class SecurityConfig {
                 .logoutSuccessUrl("/")
                 .and()
                 .oauth2Login()
+                .defaultSuccessUrl("/", true)
                 .userInfoEndpoint()
                 .userService(customOAuth2UserService);
         return http.build();
