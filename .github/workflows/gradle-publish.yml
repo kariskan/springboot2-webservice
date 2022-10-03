@@ -42,7 +42,7 @@ jobs:
       shell: bash
       
     - name: Build with Gradle
-      run: ./gradlew clean build -x test # 해당 프로젝트 build
+      run: ./gradlew clean -x test build # 해당 프로젝트 build
       shell: bash
       
     - name: Get current time
@@ -56,8 +56,15 @@ jobs:
       run: echo "CurrentTime=${{steps.current-time.outputs.formattedTime}}" # 지정한 포맷대로 현재 시간 표현
       shell: bash
 
-    - name: Make zip file
-      run: zip -r ./$PROJECT_NAME.zip . # 프로젝트 이름으로 빌드된 전체 폴더를 모두 압축
+    - name: Generate deployment package
+      run: |
+        mkdir -p before-deploy
+        cp scripts/*.sh before-deploy/
+        cp appspec.yml before-deploy/
+        cp build/libs/*.jar before-deploy/
+        cd before-deploy && zip -r before-deploy *
+        cd ../ && mkdir -p deploy
+        mv before-deploy/before-deploy.zip deploy/$PROJECT_NAME.zip
       shell: bash
       
     - name: Configure AWS credentials
