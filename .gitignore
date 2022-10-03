@@ -5,7 +5,7 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 application-oauth.properties
-.properties
+application-real-db.properties
 
 ### STS ###
 .apt_generated
