@@ -3,6 +3,7 @@ package com.kariskan.practice.webservice;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.boot.context.ApplicationPidFileWriter;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
@@ -12,7 +13,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 public class Springboot2WebserviceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Springboot2WebserviceApplication.class, args);
+        SpringApplication
+                .run(Springboot2WebserviceApplication.class, args)
+                .addApplicationListener(new ApplicationPidFileWriter());
     }
 
 }
