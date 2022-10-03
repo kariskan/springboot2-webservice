@@ -38,3 +38,14 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew clean build -x test # 해당 프로젝트 build
       shell: bash
+      
+    - name: Get current time
+      uses: 1466587594/get-current-time@v2 # utcOffset: "+09:00": 해당 action의 기준이 KST로 진행하기 위해 + 09:00
+      id: current-time
+      with:
+        format: YYYY-MM-DDTHH-mm-ss
+        utcOffset: "+09:00"
+    
+    - name: Show Current Time
+      run: echo "CurrentTime=${{steps.current-time.outputs.formattedTime}}" # 지정한 포맷대로 현재 시간 표현
+      shell: bash
